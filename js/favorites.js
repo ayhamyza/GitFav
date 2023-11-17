@@ -1,3 +1,9 @@
+import { GithubUser} from"./GithubUser.js"
+
+
+
+
+
 export class Favorites {
     constructor (root) {
         this.root = document.querySelector (root)
@@ -5,40 +11,66 @@ export class Favorites {
     }
     
 load() {
-    this.entries =  [
-        {
-        login: 'maykbrito',
-        name: "Mayk Brito",
-        public_repos: '76',
-        followers: '12000'
-        },
-
-        {
-        login: 'ayhamyza',
-        name: "Ayhamyza",
-        public_repos: '76',
-        followers: '12000'
-        }           
-    ]
+    this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
 }
-    delete(user) {
-        const filteredEntries = this.entries
-        .filter(entry => entry.login !== user.login)
 
-        console.log(filteredEntries)
+save() {
+    localStorage.setItem('@github-favorites:', JSON.stringify(this.entries))
+}
+
+async add(username){
+    try{
+
+    const userExists = this.entries.find(entry => entry.login === username)
+
+    if(userExists) {
+        throw new Error('Usuario ja cadastrado')
+    }
+
+    const user = await GithubUser.search(username)
+
+    if(user.login === undefined) {
+        throw new Error('Usuário não encontrado!')
+        }
+
+        this.entries = [user, ...this.entries]
+        this.update()
+        this.save()
+
+    } catch(error) {
+        alert(error.message)
+    }
+}
+
+     delete(user) {
+        const filteredEntries = this.entries
+            .filter(entry => entry.login !== user.login)
+        this.entries = filteredEntries
+        this.update()
+        this.save()
     }  
 }
 
 
 export class FavoritesWiew extends Favorites {
-    constructor (root) {
-        super (root)
+    constructor(root) {
+        super(root)
         
         this.tbody = this.root.querySelector('table tbody')
 
         this.update()
+        this.onadd()
     }
 
+    onadd() {
+        const addButton = this.root.querySelector('.search button')
+        addButton.onclick = () => {
+           const { value } = this.root.querySelector('.search input')
+           
+           this.add(value)
+        }
+
+    }
     update() {
         this.removeAllTr()
 
@@ -48,6 +80,7 @@ export class FavoritesWiew extends Favorites {
             
             row.querySelector('.user img').src = `https://github.com/${user.login}.png`
             row.querySelector('.user img').alt = `imagem de ${user.name}`
+            row.querySelector('.user a').href = `https://github.com/${user.login}`
             row.querySelector('.user p').textContent = user.name
             row.querySelector('.user span').textContent = user.login
             row.querySelector('.repositories').textContent = user.public_repos
@@ -67,7 +100,7 @@ export class FavoritesWiew extends Favorites {
 
     createRow() {
         const tr = document.createElement('tr')
-        const content = `
+        tr.innerHTML = `
         <td class="user">
                 <img src="https://github.com/maykbrito.png" alt="imagem de mayk brito">
                 <a href="https://github.com/maykbrito" target="_blank" >
@@ -85,8 +118,6 @@ export class FavoritesWiew extends Favorites {
             <button class="remove">Remover</button>
         </td>
         `
-
-        tr.innerHTML = content
 
         return tr
     }
