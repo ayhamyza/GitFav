@@ -69,8 +69,8 @@ export class FavoritesWiew extends Favorites {
            
            this.add(value)
         }
-
     }
+
     update() {
         this.removeAllTr()
 
@@ -129,3 +129,10 @@ export class FavoritesWiew extends Favorites {
         })
     }
 }
+
+document.addEventListener('keydown', function(e) {
+    if(e.key === 'Enter') {
+        let btnEnter = document.querySelector ('.search button');
+        btnEnter.click();
+    }
+})

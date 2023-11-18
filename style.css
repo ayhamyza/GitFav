@@ -81,19 +81,10 @@ header .search {
     border-radius: .4rem;
     padding: 0 .9rem;
     border: none;
-    background-color: rgb(14, 87, 100);
+    background-color: rgb(13, 86, 99);
 
     letter-spacing: .1rem;
     font-size: 1.2rem; 
-
-    display: flex;
-    align-items: center; 
-    gap: .2rem;
-}
-
-.star{
-    font-size: 2.0rem;
-    margin-bottom: .5rem;
 }
 
 /*TABLE*/
