@@ -92,6 +92,7 @@ table{
     margin-top: 3.0rem;
     width: 100%;
     border-collapse: collapse;
+  
 }
 
 table * {
@@ -166,16 +167,58 @@ td .remove {
 
     header{
         flex-direction: column;
-        margin-left: 2rem;
+        align-items: center;
+
+        margin: .1rem;
         
     }
-    header, .icon, .search{
-        width: 100%;}
-    
  
-   #app{
-       padding: 0;
+   table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    margin-top: 2rem;
+    border-collapse: collapse;
+    
+    
    }
+
+   table td:nth-child(3){
+    padding: 0 4.0rem 0 0;
+   } 
+  
+
+   .user {
+   /* display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 60%;
+    padding-bottom:30%;
+
+    margin: 0;
+    box-sizing: border-box;
+   
+    padding: 1.0rem;    
+   }
+
+   .search{
+    margin-left: 2rem;
+    margin-right: 2rem;
+   }
+
+    .search input{
+        width: 20.0rem;
+    }
+
+    .table {
+    width: 11.6rem;
+    }
+
+    table td {
+    text-align: center;
+    }
 
 }
 

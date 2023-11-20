@@ -101,22 +101,26 @@ export class FavoritesWiew extends Favorites {
     createRow() {
         const tr = document.createElement('tr')
         tr.innerHTML = `
+        <div class="table">
         <td class="user">
-                <img src="https://github.com/maykbrito.png" alt="imagem de mayk brito">
-                <a href="https://github.com/maykbrito" target="_blank" >
-                <p>mayk brito</p>
-                <span>maykbrito</span>
-            </a>
+                    <img src="https://github.com/maykbrito.png" alt="imagem de mayk brito">
+                    <a href="https://github.com/maykbrito" target="_blank">
+                        <p>mayk brito</p>
+                        <span>maykbrito</span>
+                    </a>
         </td>
-        <td class="repositories">
-            01
-        </td>
-        <td class="followers">
-            02
-        </td>
-        <td>
-            <button class="remove">Remover</button>
-        </td>
+            
+                 <td class="repositories">
+                        01
+                </td>
+                
+                <td class="followers">
+                    02
+                </td>
+                <td>
+                    <button class="remove">Remover</button>
+                </td>
+        </div>
         `
 
         return tr
