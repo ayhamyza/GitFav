@@ -185,7 +185,7 @@ td .remove {
    }
 
    table td:nth-child(3){
-    padding: 0 4.0rem 0 0;
+    padding: 0 60px 0 0;
    } 
   
 
@@ -213,7 +213,7 @@ td .remove {
     }
 
     .table {
-    width: 11.6rem;
+    width: 11.7rem;
     }
 
     table td {
