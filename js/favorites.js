@@ -1,4 +1,4 @@
-import { GithubUser} from"./GithubUser.js"
+import { GithubUser} from "./GithubUser.js"
 
 
 
@@ -6,45 +6,46 @@ import { GithubUser} from"./GithubUser.js"
 
 export class Favorites {
     constructor (root) {
-        this.root = document.querySelector (root)
+        this.root = document.querySelector(root)
         this.load()
     }
     
-load() {
-    this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
-}
+    load() {
+      this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
+    }   
 
-save() {
-    localStorage.setItem('@github-favorites:', JSON.stringify(this.entries))
-}
-
-async add(username){
-    try{
-
-    const userExists = this.entries.find(entry => entry.login === username)
-
-    if(userExists) {
-        throw new Error('Usuario ja cadastrado')
+    save() {
+      localStorage.setItem('@github-favorites:', JSON.stringify(this.entries))
     }
 
-    const user = await GithubUser.search(username)
+    async add(username){
+        try{
 
-    if(user.login === undefined) {
-        throw new Error('Usuário não encontrado!')
-        }
+            const userExists = this.entries.find(entry => entry.login === username)
 
-        this.entries = [user, ...this.entries]
-        this.update()
-        this.save()
+            if(userExists) {
+                throw new Error('Usuario ja cadastrado')
+            }
 
-    } catch(error) {
+            const user = await GithubUser.search(username)
+
+            if(user.login === undefined) {
+                throw new Error('Usuário não encontrado!')
+            }
+
+            this.entries = [user, ...this.entries]
+            this.update()
+            this.save()
+
+        } catch(error) {
         alert(error.message)
+        }
     }
-}
 
      delete(user) {
         const filteredEntries = this.entries
             .filter(entry => entry.login !== user.login)
+
         this.entries = filteredEntries
         this.update()
         this.save()
@@ -101,36 +102,32 @@ export class FavoritesWiew extends Favorites {
     createRow() {
         const tr = document.createElement('tr')
         tr.innerHTML = `
-        <div class="table">
-        <td class="user">
+                <td class="user">
                     <img src="https://github.com/maykbrito.png" alt="imagem de mayk brito">
                     <a href="https://github.com/maykbrito" target="_blank">
                         <p>mayk brito</p>
                         <span>maykbrito</span>
                     </a>
-        </td>
-            
-                 <td class="repositories">
-                        01
                 </td>
-                
+                <td class="repositories">
+                    01
+                </td>   
                 <td class="followers">
                     02
                 </td>
                 <td>
                     <button class="remove">Remover</button>
                 </td>
-        </div>
-        `
+        `   
 
         return tr
     }
 
     removeAllTr(){
         this.tbody.querySelectorAll('tr')
-        .forEach((tr) => {
-            tr.remove()
-        })
+            .forEach((tr) => {
+                tr.remove()
+            })
     }
 }
 

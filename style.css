@@ -34,7 +34,7 @@ body * {
 
 #app {
     padding: 2rem;
-    max-width: 900px ;
+    max-width: 900px;
     margin: 0 auto;
 }
 /*HEADER*/
@@ -50,7 +50,6 @@ header {
 
 header .icon{
     align-items: center;
-    gap: 1.0rem;
 }
 
 header .icon h1{
@@ -165,60 +164,42 @@ td .remove {
 
 @media (max-width: 500px){
 
+    #app{
+        padding: 1rem;
+    }
+
+    div#container{
+        overflow-x: auto;
+    }
+
+    div.icon, div.search{
+        margin-top: 2.0rem;
+}
+
     header{
         flex-direction: column;
         align-items: center;
+        display: block;
+        margin: 0 auto;
+}
 
-        margin: .1rem;
+
+   td.user{
+        display: block;
+        padding: 1.5rem;
+        padding-left: .5rem;
+        width:100px;
         
-    }
- 
-   table{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- 
-    margin-top: 2rem;
-    border-collapse: collapse;
-    
-    
-   }
 
-   table td:nth-child(3){
-    padding: 0 60px 0 0;
-   } 
-  
+}
+   .user img{
+    margin-bottom:1rem ;
+}
+   .user a{
+    margin: 0 auto;
+}
 
-   .user {
-   /* display: flex;*/
-    flex-direction: column;
-    align-items: center;
-    width: 60%;
-    height: 60%;
-    padding-bottom:30%;
 
-    margin: 0;
-    box-sizing: border-box;
-   
-    padding: 1.0rem;    
-   }
-
-   .search{
-    margin-left: 2rem;
-    margin-right: 2rem;
-   }
-
-    .search input{
-        width: 20.0rem;
-    }
-
-    .table {
-    width: 11.7rem;
-    }
-
-    table td {
-    text-align: center;
-    }
 
 }
 
